@@ -23,6 +23,8 @@ class ContactAdapter extends ArrayAdapter<ContactItem> {
 			int textViewResourceId, List<ContactItem> objects) {
 		super(context, textViewResourceId, objects);
 		this.pairList = objects;
+		this.inflator = (LayoutInflater)context.getSystemService
+			      (Context.LAYOUT_INFLATER_SERVICE);
 	}
 
 	public void setInflater(LayoutInflater mInflater) {

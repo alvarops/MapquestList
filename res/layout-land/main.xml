@@ -2,18 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="horizontal" >
     
 	<fragment android:name="com.ie.alvaropereda.fragmentedMap.controller.fragments.ContactListFragment"
-    	  android:id="@+id/listFragment"
-    	  android:layout_weight="1"
-          android:layout_width="0px"
-          android:layout_height="match_parent" />
-
-	<FrameLayout
-   		android:id="@+id/mapLayout"
-   		android:layout_weight="1"
-        android:layout_width="0px" 
-       	android:layout_height="fill_parent">  	
-	</FrameLayout>
+    	  android:id="@+id/contact_list_fragment"
+    	  android:layout_weight="40"
+          android:layout_width="0dp"
+          android:layout_height="match_parent">
+	</fragment>
+	<fragment
+	    android:name="com.ie.alvaropereda.fragmentedMap.controller.fragments.MapquestMapFragment"
+	    android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mapquest_map_fragment"
+        android:layout_weight="60">
+	</fragment>
 </LinearLayout>

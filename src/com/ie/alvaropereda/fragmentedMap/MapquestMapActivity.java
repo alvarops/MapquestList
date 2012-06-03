@@ -1,32 +1,27 @@
 package com.ie.alvaropereda.fragmentedMap;
 
-import android.content.res.Configuration;
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.ie.alvaropereda.fragmentedMap.controller.fragments.MapquestMapFragment;
-import com.mapquest.android.maps.MapActivity;
+import com.mapquest.android.maps.MapFragmentActivity;
 
-public class MapquestMapActivity extends MapActivity {
+public class MapquestMapActivity extends MapFragmentActivity {
 	/**
 	 * @see android.app.Activity#onCreate(Bundle)
 	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		if (getResources().getConfiguration().orientation
-                == Configuration.ORIENTATION_LANDSCAPE) {
-            // If the screen is now in landscape mode, we can show the
-            // dialog in-line with the list so we don't need this activity.
-            finish();
-            return;
-        }
 		
-		if (savedInstanceState == null) {
-            // During initial setup, plug in the details fragment.
-            MapquestMapFragment details = new MapquestMapFragment();
-            details.setArguments(getIntent().getExtras());
-            getSupportFragmentManager().beginTransaction().add(android.R.id.content, details).commit();
-        }
+		setContentView(R.layout.map_fragment);
+        
+        Intent launchingIntent = getIntent();
+        String content = launchingIntent.getData().toString();
+     
+        MapquestMapFragment detailView = (MapquestMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.mapquest_map_fragment);
+        
 	}
 
 	@Override

@@ -4,6 +4,7 @@
 package com.ie.alvaropereda.fragmentedMap.controller.fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,16 +20,14 @@ import com.mapquest.android.maps.MapView;
  */
 public class MapquestMapFragment extends MapFragment {
 
-	/**
-	 * @see android.app.Fragment#onCreate(android.os.Bundle)
-	 */
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-
-		
+	private static final String TAG = MapquestMapFragment.class.getName();
+	
+	private MapView map;
+	
+	public MapquestMapFragment() {
+		super();
 	}
-
+	
 	/**
 	 * @see android.app.Fragment#onCreateView(android.view.LayoutInflater,
 	 *      android.view.ViewGroup, android.os.Bundle)
@@ -37,16 +36,19 @@ public class MapquestMapFragment extends MapFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		super.onCreateView(inflater, container, savedInstanceState);
+		Log.d(TAG, "onCreateView");
+		
+		View view = (View) inflater.inflate(R.layout.map_detail,
+				container, true);
+
 		// Inflate the layout for this fragment
-		MapView map = (MapView) inflater
-				.inflate(R.layout.map, container, false);
+		map = (MapView) view.findViewById(R.id.map);
 
 		// set the zoom level, center point and enable the default zoom controls
 		map.getController().setZoom(9);
 		map.getController().setCenter(new GeoPoint(38.892155, -77.036195));
 		map.setBuiltInZoomControls(true);
-
-		return map;
+		return view;
 	}
 
 	/**
@@ -55,12 +57,6 @@ public class MapquestMapFragment extends MapFragment {
 	@Override
 	public void onPause() {
 		super.onPause();
-	}
-
-	@Override
-	public boolean isRouteDisplayed() {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 }
