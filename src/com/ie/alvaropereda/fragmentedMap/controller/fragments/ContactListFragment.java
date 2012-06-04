@@ -7,10 +7,12 @@ import java.util.LinkedList;
 import java.util.List;
 
 import android.app.Activity;
+import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
+import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.provider.ContactsContract.Data;
 import android.support.v4.app.ListFragment;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 
@@ -24,7 +26,7 @@ import com.ie.alvaropereda.fragmentedMap.model.ContactItem;
  */
 public class ContactListFragment extends ListFragment {
 
-	private static final String TAG = ContactListFragment.class.getName();
+	private static final String TAG = ContactListFragment.class.getSimpleName();
 	
 	private OnListItemSelectedListener listItemSelectedListener;
 	private LinkedList<ContactItem> contactItemList = new LinkedList<ContactItem>();
@@ -32,6 +34,27 @@ public class ContactListFragment extends ListFragment {
 	long currentID = 0;
 	long currentContactID = 0;
 	private ContactAdapter mAdapter;
+	
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+	    super.onCreate(savedInstanceState);
+	    Log.d(TAG, "onCreate");
+		
+	    this.contactItemList = new LinkedList<ContactItem>();//getContacts();
+		
+	    mAdapter = new ContactAdapter(getActivity(), R.layout.list_item,
+				R.id.key, contactItemList);
+		setListAdapter(mAdapter);
+		
+		if (!taskRun) {
+			new ListContactTask(getActivity(), mAdapter).execute();
+		}
+		
+		taskRun = true;
+	    listItemSelectedListener = (OnListItemSelectedListener) getActivity();
+	}
+	
 	
 	/*
 	 * (non-Javadoc)
@@ -42,19 +65,8 @@ public class ContactListFragment extends ListFragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		
-		if (!taskRun) {
-			FragmentTransaction ft = getFragmentManager().beginTransaction();
-	        ListContactTask task= new ListContactTask(getActivity(),ft);
-	        task.execute();
-		}
-		taskRun = true;
-		listItemSelectedListener = (OnListItemSelectedListener) getActivity();
+		Log.d(TAG, "onActivityCreated");
 		
-		mAdapter = new ContactAdapter(getActivity(), R.layout.list_item,
-				R.id.key, contactItemList);
-		mAdapter.setLayout(R.layout.list_item);
-		setListAdapter(mAdapter);
-		//getListView().invalidate();
 	}
 
 	public void setDataList(List<ContactItem> list) {
@@ -64,8 +76,8 @@ public class ContactListFragment extends ListFragment {
 			mAdapter = new ContactAdapter(act, R.layout.list_item, R.id.key,
 					list);
 			mAdapter.setLayout(R.layout.list_item);
+			mAdapter.notifyDataSetChanged();
 			setListAdapter(mAdapter);
-			//getListView().invalidate();
 		}
 	}
 	
@@ -78,4 +90,5 @@ public class ContactListFragment extends ListFragment {
 	public interface OnListItemSelectedListener {
 	    public void onListItemSelected(ContactItem contactItem);
 	}
+	
 }

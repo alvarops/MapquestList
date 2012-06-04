@@ -14,10 +14,8 @@ import com.mapquest.android.maps.MapFragmentActivity;
 
 public class MapquestListActivity extends MapFragmentActivity implements ContactListFragment.OnListItemSelectedListener{
 
-	private static final String TAG = MapquestListActivity.class.getName();
+	private static final String TAG = MapquestListActivity.class.getSimpleName();
 	
-	private ContactListFragment contactListFragment;
-
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -58,17 +56,5 @@ public class MapquestListActivity extends MapFragmentActivity implements Contact
 		} else {
 			//detailView.updateComic(comicID);
 		}
-	}
-	
-	public void addContactListFragment(FragmentTransaction ft, List<ContactItem> result) {
-		contactListFragment = (ContactListFragment) getSupportFragmentManager().findFragmentByTag("ContactList");
-		
-		if (contactListFragment == null) {
-			contactListFragment = new ContactListFragment();
-		}
-		ft.replace(R.id.contact_list_fragment, contactListFragment);
-		ft.commit();
-		contactListFragment.setDataList(result);
-		contactListFragment.taskRun = true;
 	}
 }

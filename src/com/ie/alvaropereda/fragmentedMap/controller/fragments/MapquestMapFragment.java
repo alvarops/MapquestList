@@ -20,7 +20,7 @@ import com.mapquest.android.maps.MapView;
  */
 public class MapquestMapFragment extends MapFragment {
 
-	private static final String TAG = MapquestMapFragment.class.getName();
+	private static final String TAG = MapquestMapFragment.class.getSimpleName();
 	
 	private MapView map;
 	

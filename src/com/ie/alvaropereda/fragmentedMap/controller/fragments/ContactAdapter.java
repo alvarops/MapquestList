@@ -13,8 +13,8 @@ import android.widget.TextView;
 import com.ie.alvaropereda.fragmentedMap.R;
 import com.ie.alvaropereda.fragmentedMap.model.ContactItem;
 
-class ContactAdapter extends ArrayAdapter<ContactItem> {
-	private static final String TAG = ContactAdapter.class.getName();
+public class ContactAdapter extends ArrayAdapter<ContactItem> {
+	private static final String TAG = ContactAdapter.class.getSimpleName();
 	private LayoutInflater inflator = null;
 	List<ContactItem> pairList = null;
 	private int layout;
@@ -25,6 +25,7 @@ class ContactAdapter extends ArrayAdapter<ContactItem> {
 		this.pairList = objects;
 		this.inflator = (LayoutInflater)context.getSystemService
 			      (Context.LAYOUT_INFLATER_SERVICE);
+		this.layout = resource;
 	}
 
 	public void setInflater(LayoutInflater mInflater) {
@@ -50,7 +51,7 @@ class ContactAdapter extends ArrayAdapter<ContactItem> {
 			}
 			ContactItem pair = (ContactItem) getItem(position);
 			String key = pair.mDisplayName;
-			String value = pair.mPhone;
+			String value = pair.mAddress;
 
 			holder.key.setText(key);
 			holder.value.setText(value);
@@ -63,5 +64,13 @@ class ContactAdapter extends ArrayAdapter<ContactItem> {
 	static class ViewHolder {
 		TextView key;
 		TextView value;
+	}
+
+	public void setPairList(List<ContactItem> result) {
+		this.pairList = result;
+	}
+	
+	public List<ContactItem> getPairList() {
+		return this.pairList;
 	}
 }

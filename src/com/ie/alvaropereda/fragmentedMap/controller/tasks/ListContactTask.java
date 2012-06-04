@@ -7,14 +7,15 @@ import java.util.LinkedList;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.Context;
 import android.database.Cursor;
 import android.os.AsyncTask;
+import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.Data;
-import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 
-import com.ie.alvaropereda.fragmentedMap.MapquestListActivity;
+import com.ie.alvaropereda.fragmentedMap.controller.fragments.ContactAdapter;
 import com.ie.alvaropereda.fragmentedMap.model.ContactItem;
 
 /**
@@ -22,26 +23,36 @@ import com.ie.alvaropereda.fragmentedMap.model.ContactItem;
  * 
  */
 public class ListContactTask extends AsyncTask<Void, Void, List<ContactItem>> {
-	private static final String TAG = ListContactTask.class.getName();
-	private FragmentTransaction ft;
+	private static final String TAG = ListContactTask.class.getSimpleName();
 	private Activity activity;
+	private ContactAdapter adapter;
 
-	public ListContactTask(Activity activity, FragmentTransaction ft) {
+	public ListContactTask(Activity activity, ContactAdapter adapter) {
 		this.activity = activity;
-		this.ft = ft;
+		this.adapter = adapter;
+		
+		if (adapter.getPairList() == null) {
+			adapter.setPairList(new LinkedList<ContactItem>());
+		} else {
+			adapter.getPairList().clear();
+		}
 	}
 
-	@SuppressWarnings("unused")
+	@Override
 	protected List<ContactItem> doInBackground(Void... params) {
+		return getContacts(activity);
+	}
+	
+	public List<ContactItem> getContacts(Context activity){
 		Cursor c = activity.getContentResolver().query(
 				Data.CONTENT_URI,
 				new String[] { Data._ID, Data.DISPLAY_NAME, Phone.NUMBER,
 						Data.CONTACT_ID, Phone.TYPE, Phone.LABEL },
-				Data.MIMETYPE + "='" + Phone.CONTENT_ITEM_TYPE + "'", null,
+				Data.MIMETYPE + "='" + ContactsContract.CommonDataKinds.StructuredPostal.CONTENT_ITEM_TYPE + "'", null,
 				Data.DISPLAY_NAME);
 
 		int count = c.getCount();
-		boolean b = c.moveToFirst();
+		c.moveToFirst();
 		String[] columnNames = c.getColumnNames();
 		int displayNameColIndex = c.getColumnIndex("display_name");
 		int idColIndex = c.getColumnIndex("_id");
@@ -49,10 +60,11 @@ public class ListContactTask extends AsyncTask<Void, Void, List<ContactItem>> {
 		int col3Index = c.getColumnIndex(columnNames[3]);
 		int col4Index = c.getColumnIndex(columnNames[4]);
 
-		List<ContactItem> contactItemList = new LinkedList<ContactItem>();
+		List<ContactItem> contactItemList = adapter.getPairList();
+		
 		for (int i = 0; i < count; i++) {
 			String displayName = c.getString(displayNameColIndex);
-			String phoneNumber = c.getString(col2Index);
+			String address = c.getString(col2Index);
 			int contactId = c.getInt(col3Index);
 			String phoneType = c.getString(col4Index);
 			
@@ -63,7 +75,7 @@ public class ListContactTask extends AsyncTask<Void, Void, List<ContactItem>> {
 			contactItem.mId = _id;
 			contactItem.mContactId = contactId;
 			contactItem.mDisplayName = displayName;
-			contactItem.mPhone = phoneNumber;
+			contactItem.mAddress = address;
 			contactItemList.add(contactItem);
 			boolean b2 = c.moveToNext();
 		}
@@ -71,8 +83,9 @@ public class ListContactTask extends AsyncTask<Void, Void, List<ContactItem>> {
 		return contactItemList;
 	}
 
+	@Override
 	protected void onPostExecute(List<ContactItem> result) {
 		Log.d(TAG, "OnPostExecute");
-		((MapquestListActivity)activity).addContactListFragment(ft, result);
+		adapter.notifyDataSetChanged();
 	}
 }

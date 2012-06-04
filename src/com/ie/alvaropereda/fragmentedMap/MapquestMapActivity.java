@@ -17,10 +17,10 @@ public class MapquestMapActivity extends MapFragmentActivity {
 		setContentView(R.layout.map_fragment);
         
         Intent launchingIntent = getIntent();
-        String content = launchingIntent.getData().toString();
+       // String content = launchingIntent.getData().toString();
      
-        MapquestMapFragment detailView = (MapquestMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.mapquest_map_fragment);
+        //MapquestMapFragment detailView = (MapquestMapFragment) getSupportFragmentManager()
+         //       .findFragmentById(R.id.mapquest_map_fragment);
         
 	}
 
