@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.ie.alvaropereda.fragmentedMap.model;
+package com.ie.aol.hatchday.mapquest.model;
 
 /**
  * @author Alvaro

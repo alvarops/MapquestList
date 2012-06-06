@@ -1,24 +1,21 @@
 /**
  * 
  */
-package com.ie.alvaropereda.fragmentedMap.controller.fragments;
+package com.ie.aol.hatchday.mapquest.controller.fragments;
 
 import java.util.LinkedList;
 import java.util.List;
 
 import android.app.Activity;
-import android.database.Cursor;
 import android.os.Bundle;
-import android.provider.ContactsContract.CommonDataKinds.Phone;
-import android.provider.ContactsContract.Data;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 
-import com.ie.alvaropereda.fragmentedMap.R;
-import com.ie.alvaropereda.fragmentedMap.controller.tasks.ListContactTask;
-import com.ie.alvaropereda.fragmentedMap.model.ContactItem;
+import com.ie.aol.hatchday.mapquest.R;
+import com.ie.aol.hatchday.mapquest.controller.tasks.ListContactTask;
+import com.ie.aol.hatchday.mapquest.model.ContactItem;
 
 /**
  * @author Alvaro

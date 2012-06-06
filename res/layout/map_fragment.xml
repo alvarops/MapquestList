@@ -2,7 +2,7 @@
 <fragment
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/mapquest_map_fragment"
-    android:name="com.ie.alvaropereda.fragmentedMap.controller.fragments.MapquestMapFragment"
+    android:name="com.ie.aol.hatchday.mapquest.controller.fragments.MapquestMapFragment"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 </fragment>

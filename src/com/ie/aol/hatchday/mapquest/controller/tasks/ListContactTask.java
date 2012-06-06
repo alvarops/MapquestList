@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.ie.alvaropereda.fragmentedMap.controller.tasks;
+package com.ie.aol.hatchday.mapquest.controller.tasks;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -15,8 +15,8 @@ import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.Data;
 import android.util.Log;
 
-import com.ie.alvaropereda.fragmentedMap.controller.fragments.ContactAdapter;
-import com.ie.alvaropereda.fragmentedMap.model.ContactItem;
+import com.ie.aol.hatchday.mapquest.controller.fragments.ContactAdapter;
+import com.ie.aol.hatchday.mapquest.model.ContactItem;
 
 /**
  * @author Alvaro

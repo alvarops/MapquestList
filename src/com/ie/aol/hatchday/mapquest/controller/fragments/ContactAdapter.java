@@ -1,4 +1,4 @@
-package com.ie.alvaropereda.fragmentedMap.controller.fragments;
+package com.ie.aol.hatchday.mapquest.controller.fragments;
 
 import java.util.List;
 
@@ -10,8 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.ie.alvaropereda.fragmentedMap.R;
-import com.ie.alvaropereda.fragmentedMap.model.ContactItem;
+import com.ie.aol.hatchday.mapquest.R;
+import com.ie.aol.hatchday.mapquest.model.ContactItem;
 
 public class ContactAdapter extends ArrayAdapter<ContactItem> {
 	private static final String TAG = ContactAdapter.class.getSimpleName();

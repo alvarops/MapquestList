@@ -1,15 +1,12 @@
-package com.ie.alvaropereda.fragmentedMap;
-
-import java.util.List;
+package com.ie.aol.hatchday.mapquest;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 
-import com.ie.alvaropereda.fragmentedMap.controller.fragments.ContactListFragment;
-import com.ie.alvaropereda.fragmentedMap.controller.fragments.MapquestMapFragment;
-import com.ie.alvaropereda.fragmentedMap.model.ContactItem;
+import com.ie.aol.hatchday.mapquest.controller.fragments.ContactListFragment;
+import com.ie.aol.hatchday.mapquest.controller.fragments.MapquestMapFragment;
+import com.ie.aol.hatchday.mapquest.model.ContactItem;
 import com.mapquest.android.maps.MapFragmentActivity;
 
 public class MapquestListActivity extends MapFragmentActivity implements ContactListFragment.OnListItemSelectedListener{

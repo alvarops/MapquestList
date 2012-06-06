@@ -4,14 +4,14 @@
     android:layout_height="match_parent"
     android:orientation="horizontal" >
     
-	<fragment android:name="com.ie.alvaropereda.fragmentedMap.controller.fragments.ContactListFragment"
+	<fragment android:name="com.ie.aol.hatchday.mapquest.controller.fragments.ContactListFragment"
     	  android:id="@+id/contact_list_fragment"
     	  android:layout_weight="0.4"
           android:layout_width="fill_parent"
           android:layout_height="match_parent">
 	</fragment>
 	<fragment
-	    android:name="com.ie.alvaropereda.fragmentedMap.controller.fragments.MapquestMapFragment"
+	    android:name="com.ie.aol.hatchday.mapquest.controller.fragments.MapquestMapFragment"
 	    android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/mapquest_map_fragment"

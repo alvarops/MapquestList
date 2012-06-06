@@ -1,9 +1,8 @@
-package com.ie.alvaropereda.fragmentedMap;
+package com.ie.aol.hatchday.mapquest;
 
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.ie.alvaropereda.fragmentedMap.controller.fragments.MapquestMapFragment;
 import com.mapquest.android.maps.MapFragmentActivity;
 
 public class MapquestMapActivity extends MapFragmentActivity {
